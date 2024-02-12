@@ -40,7 +40,9 @@ userRouter.post("/register", [
             maxAge: 86400000,
         })
 
+        // check this!!!
         return res.sendStatus(200);
+
     } catch (error) {
         console.log(error);
         res.status(500).send({message: "Something went wrong"});
