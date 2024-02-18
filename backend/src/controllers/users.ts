@@ -6,10 +6,10 @@ import { check, validationResult } from "express-validator";
 const userRouter = express.Router();
 
 userRouter.post("/register", [
-    check("firstName", "First name is required").isString(),
-    check("lastName", "Last name is required").isString(),
-    check("email", "Email is required").isString(),
-    check("password", "Password with 6 or more characters is required").isLength({min:6})
+    check("firstName", "First name is required!").isString(),
+    check("lastName", "Last name is required!").isString(),
+    check("email", "Email is required!").isString(),
+    check("password", "Password with 6 or more characters is required!").isLength({min:6})
 ], async (req: Request, res: Response) => {
     // check if there is some error from validator
     const errors = validationResult(req);
@@ -22,7 +22,7 @@ userRouter.post("/register", [
         });
 
         if(user){
-            return res.status(400).json({message: "User already exists"});
+            return res.status(400).json({message: "User already exists!"});
         }
 
         user = new User(req.body);
