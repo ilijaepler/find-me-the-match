@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import userRouter from './controllers/users';
 import authRouter from './controllers/auth';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 mongoose.connect(process.env.MONGODB_CONNECTION as string);
 
@@ -13,6 +14,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({credentials: true, origin: process.env.FRONTEND_URL}));
+
+app.use(express.static(path.join(__dirname, "../../frontend/dist")))
 
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
